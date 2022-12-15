@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Post implements SocialObject{
+public class Post{
     private int id;
 
     private String title;
@@ -22,11 +22,5 @@ public class Post implements SocialObject{
         this.title = title;
         this.content = content;
         this.postCreatedDate = postCreatedDate;
-    }
-
-    @Override
-    public Object getObject() {
-        Post post = new Post(this.id,this.title,this.content, this.postCreatedDate);
-        return post;
     }
 }

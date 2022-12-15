@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Group implements SocialObject{
+public class Group{
     private int id;
 
     private String nameGroup;
@@ -23,12 +23,6 @@ public class Group implements SocialObject{
         this.nameGroup = nameGroup;
         this.numberOfParticipants = numberOfParticipants;
         this.groupCreateDate = groupCreateDate;
-    }
-
-    @Override
-    public Object getObject() {
-        Group group = new Group(this.id, this.nameGroup, this.numberOfParticipants, this.groupCreateDate);
-        return group;
     }
 }
 

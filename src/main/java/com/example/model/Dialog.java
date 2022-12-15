@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Dialog implements SocialObject{
+public class Dialog{
     private int id;
 
     private String nameDialog;
@@ -17,11 +17,5 @@ public class Dialog implements SocialObject{
         this.id = id;
         this.nameDialog = nameDialog;
         this.messageText = messageText;
-    }
-
-    @Override
-    public Object getObject() {
-        Dialog dialog = new Dialog(this.id,this.nameDialog, this.messageText);
-        return dialog;
     }
 }

@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class User implements SocialObject{
+public class User{
     private int id;
 
     private String nameUser;
@@ -21,10 +21,5 @@ public class User implements SocialObject{
         this.nameUser = nameUser;
         this.password = password;
         this.dateCreateAccount = dateCreateAccount;
-    }
-    @Override
-    public Object getObject(){
-        User user = new User(this.id, this.nameUser, this.password,this.dateCreateAccount);
-        return user;
     }
 }
