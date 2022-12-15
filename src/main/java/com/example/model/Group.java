@@ -14,10 +14,10 @@ public class Group{
 
     private int numberOfParticipants;
 
-    private Date groupCreateDate;
+    private String groupCreateDate;
 
 
-    public Group(int id, String nameGroup, int numberOfParticipants, Date groupCreateDate)
+    public Group(int id, String nameGroup, int numberOfParticipants, String groupCreateDate)
     {
         this.id = id;
         this.nameGroup = nameGroup;

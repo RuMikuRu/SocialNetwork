@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.model.CreateUserRequest;
 import com.example.model.User;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,10 +13,10 @@ public interface UserService {
     List<User> findAllUsers() throws SQLException;
 
     @NotNull
-    User findByKey(@NotNull int id);
+    User findByKey(@NotNull int id) throws SQLException;
 
     @NotNull
-    User createUser(@NotNull int id, @NotNull String name,@NotNull String password,@NotNull Date createdDate);
+    User createUser(User request) throws SQLException;
 
     @NotNull
     User updateUser(@NotNull int id,@NotNull User user);

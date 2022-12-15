@@ -14,9 +14,9 @@ public class Post{
 
     private String content;
 
-    private Date postCreatedDate;
+    private String postCreatedDate;
 
-    public Post(int id, String title, String content, Date postCreatedDate)
+    public Post(int id, String title, String content, String postCreatedDate)
     {
         this.id = id;
         this.title = title;
