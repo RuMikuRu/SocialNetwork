@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.service.userService;
 
 import com.example.model.User;
 import org.jetbrains.annotations.NotNull;

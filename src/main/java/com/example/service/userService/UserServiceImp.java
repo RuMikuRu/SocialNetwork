@@ -1,7 +1,6 @@
-package com.example.service;
+package com.example.service.userService;
 
 import com.example.handlers.TableFastQuery;
-import com.example.handlers.Configs;
 import com.example.model.User;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
@@ -11,9 +10,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.handlers.Configs.conectFromDB;
+
 @Service
 @RequiredArgsConstructor
-public class UserServiceImp implements UserService{
+public class UserServiceImp implements UserService {
     @NotNull
     @Override
     public List<User> findAllUsers() throws SQLException {
@@ -33,14 +34,14 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public @NotNull User findByKey(int id) throws SQLException {
-        ResultSet rsmd = conectFromDB().executeQuery(TableFastQuery.getFromKey("users","id_user", String.valueOf(id)));
+    public @NotNull User findByKey(int key) throws SQLException {
+        ResultSet rsmd = conectFromDB().executeQuery(TableFastQuery.getFromKey("users","id_user", String.valueOf(key)));
         if(rsmd.next()) {
-            int newId = rsmd.getInt(1);
+            int id = rsmd.getInt(1);
             String name = rsmd.getString(2);
             String password = rsmd.getString(3);
             String date = rsmd.getString(4);
-            User user = new User(newId, name, password, date);
+            User user = new User(id, name, password, date);
             return user;
         }
         else {return null;}
@@ -76,15 +77,5 @@ public class UserServiceImp implements UserService{
     @Override
     public void deleteUser(int id) throws SQLException {
         boolean rsmd = conectFromDB().executeQuery(TableFastQuery.deleteData("users","id_user",id)).next();
-    }
-
-    private Statement conectFromDB() throws SQLException {
-        Connection connection = DriverManager.getConnection(
-                Configs.DB_URL,
-                Configs.USER,
-                Configs.DB_PASSWORD
-        );
-        Statement st = connection.createStatement();
-        return st;
     }
 }

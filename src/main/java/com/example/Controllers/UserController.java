@@ -2,7 +2,7 @@ package com.example.Controllers;
 
 
 import com.example.model.User;
-import com.example.service.UserService;
+import com.example.service.userService.UserService;
 
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("user")
 @RequiredArgsConstructor
-public class userController{
+public class UserController {
     @NotNull
     private UserService userService;
 
