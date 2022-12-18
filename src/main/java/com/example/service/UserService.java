@@ -19,5 +19,5 @@ public interface UserService {
     @NotNull
     User updateUser(@NotNull int id,@NotNull User user) throws SQLException;
 
-    User deleteUser(@NotNull int id);
+    void deleteUser(@NotNull int id) throws SQLException;
 }

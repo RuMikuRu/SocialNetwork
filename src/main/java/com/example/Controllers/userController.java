@@ -6,6 +6,7 @@ import com.example.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.*;
@@ -39,5 +40,11 @@ public class userController{
     @PatchMapping(value = "/{userId}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public User update(@PathVariable Integer userId, @RequestBody User request) throws SQLException {
         return userService.updateUser(userId, request);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(value = "{userId}", produces = APPLICATION_JSON_VALUE)
+    public void delete(@PathVariable Integer userId) throws SQLException {
+        userService.deleteUser(userId);
     }
 }

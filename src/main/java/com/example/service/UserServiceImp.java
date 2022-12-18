@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.dao.TableFastQuery;
+import com.example.handlers.TableFastQuery;
 import com.example.handlers.Configs;
 import com.example.model.User;
 import lombok.RequiredArgsConstructor;
@@ -74,8 +74,8 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public User deleteUser(int id) {
-        return new User(1,"dsf","fesf", "2012.12.12");
+    public void deleteUser(int id) throws SQLException {
+        boolean rsmd = conectFromDB().executeQuery(TableFastQuery.deleteData("users","id_user",id)).next();
     }
 
     private Statement conectFromDB() throws SQLException {
