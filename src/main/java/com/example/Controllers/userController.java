@@ -1,7 +1,6 @@
 package com.example.Controllers;
 
 
-import com.example.model.CreateUserRequest;
 import com.example.model.User;
 import com.example.service.UserService;
 
@@ -35,5 +34,10 @@ public class userController{
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public User create(@RequestBody User request) throws SQLException {
         return userService.createUser(request);
+    }
+
+    @PatchMapping(value = "/{userId}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public User update(@PathVariable Integer userId, @RequestBody User request) throws SQLException {
+        return userService.updateUser(userId, request);
     }
 }

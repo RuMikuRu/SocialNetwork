@@ -1,11 +1,9 @@
 package com.example.service;
 
-import com.example.model.CreateUserRequest;
 import com.example.model.User;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 public interface UserService {
@@ -19,7 +17,7 @@ public interface UserService {
     User createUser(User request) throws SQLException;
 
     @NotNull
-    User updateUser(@NotNull int id,@NotNull User user);
+    User updateUser(@NotNull int id,@NotNull User user) throws SQLException;
 
     User deleteUser(@NotNull int id);
 }
