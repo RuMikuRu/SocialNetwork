@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.handlers.Configs.conectFromDB;
+import static com.example.handlers.Configs.connectFromDB;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +19,7 @@ public class UserServiceImp implements UserService {
     @Override
     public List<User> findAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
-        ResultSet rsmd = conectFromDB().executeQuery(TableFastQuery.getALL("users","id_user","name","password","date_create_account"));
+        ResultSet rsmd = connectFromDB().executeQuery(TableFastQuery.getALL("users","id_user","name","password","date_create_account"));
         while(rsmd.next())
         {
             int id = rsmd.getInt(1);
@@ -30,29 +30,33 @@ public class UserServiceImp implements UserService {
             //System.out.println(user);
             users.add(user);
         }
+        rsmd.close();
         return users;
     }
 
     @Override
     public @NotNull User findByKey(int key) throws SQLException {
-        ResultSet rsmd = conectFromDB().executeQuery(TableFastQuery.getFromKey("users","id_user", String.valueOf(key)));
+        ResultSet rsmd = connectFromDB().executeQuery(TableFastQuery.getFromKey("users","id_user", String.valueOf(key)));
         if(rsmd.next()) {
             int id = rsmd.getInt(1);
             String name = rsmd.getString(2);
             String password = rsmd.getString(3);
             String date = rsmd.getString(4);
             User user = new User(id, name, password, date);
+            rsmd.close();
             return user;
         }
-        else {return null;}
+        else {rsmd.close();
+            return null;}
     }
 
     @Override
-    public User createUser(User request) throws SQLException {
+    public @NotNull User createUser(@NotNull User request) throws SQLException {
         //System.out.println(request.getNameUser());
-        ResultSet rsmd = conectFromDB().executeQuery(TableFastQuery.addData("users","id_user","name",
+        ResultSet rsmd = connectFromDB().executeQuery(TableFastQuery.addData("users","id_user","name",
                 "password","date_create_account",request.getId(),request.getNameUser(),request.getPassword(),request.getDateCreateAccount()));
         if(rsmd.next()) {
+            rsmd.close();
             return new User(request.getId(), request.getNameUser(), request.getPassword(), request.getDateCreateAccount());
         }
         else {
@@ -61,21 +65,23 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User updateUser(int id, User user) throws SQLException {
-        ResultSet rsmd= conectFromDB().executeQuery(TableFastQuery.updateData("users","name","password",
+    public @NotNull User updateUser(int id, @NotNull User user) throws SQLException {
+        ResultSet rsmd= connectFromDB().executeQuery(TableFastQuery.updateData("users","name","password",
                 "date_create_account",user.getNameUser(),user.getPassword(),user.getDateCreateAccount(),"id_user",id));
         if(rsmd.next())
         {
+            rsmd.close();
             return user;
         }
         else
         {
+            rsmd.close();
             return null;
         }
     }
 
     @Override
     public void deleteUser(int id) throws SQLException {
-        boolean rsmd = conectFromDB().executeQuery(TableFastQuery.deleteData("users","id_user",id)).next();
+        boolean rsmd = connectFromDB().executeQuery(TableFastQuery.deleteData("users","id_user",id)).next();
     }
 }

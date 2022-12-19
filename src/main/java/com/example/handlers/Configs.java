@@ -13,7 +13,7 @@ public interface Configs {
     String DB_SCHEMA = "schema.sql";
     String DB_DATA  = "data.sql";
 
-    public static Statement conectFromDB() throws SQLException {
+    static Statement connectFromDB() throws SQLException {
         Connection connection = DriverManager.getConnection(
                 Configs.DB_URL,
                 Configs.USER,

@@ -1,10 +1,11 @@
 package com.example.model;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Accessors(chain = true)
+
+@Getter
+@Setter
 public class User{
     private int id;
 

@@ -1,7 +1,6 @@
 package com.example.Controllers;
 
 import com.example.model.Post;
-import com.example.model.User;
 import com.example.service.postService.PostService;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
+@CrossOrigin
 @RestController
 @RequestMapping("post")
 @RequiredArgsConstructor
@@ -22,8 +21,7 @@ public class PostController {
 
     @GetMapping(value = "/all",produces = APPLICATION_JSON_VALUE)
     public List<Post> getAllPost() throws SQLException {
-        List<Post> posts = postService.findAllUsers();
-        return posts;
+        return postService.findAllUsers();
     }
 
     @GetMapping("fromKey/{key}")

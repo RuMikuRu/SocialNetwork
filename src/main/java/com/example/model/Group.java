@@ -1,6 +1,5 @@
 package com.example.model;
 
-import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
